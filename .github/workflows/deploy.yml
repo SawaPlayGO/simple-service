@@ -17,7 +17,7 @@ jobs:
         run: docker build -t "package" .
 
       - name: Stoped and remove old container
-        run: docker stop web-service && docker rm web-service
+        run: docker stop web-service; exit 0 && docker rm web-service; exit 0
         
       - name: Run docker container
         run: docker run -p 8000:8000 --name web-service "package"
