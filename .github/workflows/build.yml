@@ -15,5 +15,5 @@ jobs:
 
       - name: Run linters - ruff check
         uses: astral-sh/ruff-action@v3
-        with:
-          src: "./"
+      - run: ruff check --fix
+      - run: ruff format
