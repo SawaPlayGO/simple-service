@@ -1,0 +1,23 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - name: Actions checkout
+        uses: actions/checkout@v1
+
+      - name: Create Docker Image
+        run: docker build -t "package" .
+
+      - name: Stoped and remove old container
+        run: docker stop web-service && docker rm web-service
+        
+      - name: Run docker container
+        run: docker run -p 8000:8000 --name web-service "package"
