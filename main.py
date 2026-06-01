@@ -22,4 +22,4 @@ async def help_router() -> dict:
 
 service.include_router(routers)
 
-uvicorn.run(service)
+uvicorn.run(service, host="0.0.0.0", port=8000)
