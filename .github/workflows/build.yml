@@ -21,7 +21,7 @@ jobs:
           version: ${{ env.RUFF_PROJECT_VERSION }}
 
       - name: Echo secret
-        run: echo ${{ env.VALUE }}
+        run: echo ${{ env.VALUE.name }}
 
       - name: Run check syntax
         run: ruff check --fix
