@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  pull_request:
+    - branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-26.04
+    steps:
+      - name: Actions checkout
+      - uses: actions/checkout@v1
+
+      - name: Setup python:3.12
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      
+      - name: Setup uv
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
+
+      - name: Setup requrements
+      - uses: uv add ruff
+
+      - name: Run linters - ruff check
+      - uses: uv run ruff check
