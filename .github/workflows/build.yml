@@ -10,6 +10,7 @@ jobs:
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       RUFF_PROJECT_VERSION: "0.15.15"
+      VALUE: ${{ secrets.SECRET }}
     steps:
       - name: Actions checkout
         uses: actions/checkout@v1
@@ -18,6 +19,9 @@ jobs:
         uses: astral-sh/ruff-action@v3
         with:
           version: ${{ env.RUFF_PROJECT_VERSION }}
+
+      - name: Echo secret
+        run: echo ${{ env.VALUE.name }}
 
       - name: Run check syntax
         run: ruff check --fix
