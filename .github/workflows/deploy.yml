@@ -22,4 +22,4 @@ jobs:
           docker rm web-service || true
         
       - name: Run docker container
-        run: docker run -p 8000:8000 --name web-service "package"
+        run: docker run -d -p 8000:8000 --name web-service "package"
